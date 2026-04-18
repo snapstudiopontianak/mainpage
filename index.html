@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snap Studio Pontianak</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@200;300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            background: #0f172a;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            -webkit-user-select: none; -ms-user-select: none; user-select: none;
+        }
+
+        /* Animated Background Blobs */
+        .bg-blobs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            filter: blur(80px);
+            opacity: 0.7;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            animation: move 20s infinite alternate;
+        }
+
+        .blob-1 { width: 300px; height: 300px; background: #fb7185; top: 10%; left: -10%; }
+        .blob-2 { width: 400px; height: 400px; background: #818cf8; bottom: 10%; right: -10%; animation-delay: -5s; }
+        .blob-3 { width: 250px; height: 250px; background: #2dd4bf; top: 40%; left: 50%; animation-delay: -10s; }
+
+        @keyframes move {
+            from { transform: translate(0, 0) scale(1); }
+            to { transform: translate(50px, 100px) scale(1.1); }
+        }
+
+        /* Grain Texture Overlay */
+        .grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+            pointer-events: none;
+            opacity: 0.04;
+            background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+        }
+
+        /* Glassmorphism Classes */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 16px;
+            border-radius: 30px;
+            color: white;
+            font-weight: 500;
+            text-decoration: none;
+            margin-bottom: 12px;
+        }
+
+        .glass-btn:active {
+            transform: scale(0.97);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .container-mobile {
+            width: 100%;
+            max-width: 480px;
+            padding: 40px 20px;
+            z-index: 10;
+        }
+
+        .logo-container img {
+            width: 140px;
+            height: 140px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+        }
+
+        .h1 {
+            font-family: 'Syne', sans-serif;
+            width: 230px;
+            font-size: 32px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 1);
+            position: relative;
+            text-align: center;
+            line-height: 1;
+            margin: 0 auto 5px;
+            margin-bottom: 25px;
+        }
+
+        .h2 {
+            font-family: 'Montserrat', sans-serif;
+            width: 260px;
+            font-size: 18px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+            position: relative;
+            text-align: center;
+            line-height: 1.5;
+            margin: 0 auto 5px;
+            margin-bottom: 25px;
+        }
+
+        .complain-text {
+            width: auto;
+            font-size: 12px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.5;
+            margin: 0 auto 5px;
+        }
+
+        .h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 1);
+            position: relative;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .subtitle-map {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.6);
+            position: relative;
+            text-align: center;
+            margin: 0 auto;
+            margin-top: 1px;
+            margin-bottom: 25px;
+        }
+
+        .map-box {
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+            border-radius: 16px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .map-box iframe {
+            pointer-events: none; /* Let the container handle the click */
+        }
+
+        .map-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.1);
+            z-index: 5;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="bg-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+    <div class="grain"></div>
+
+    <main class="container-mobile">
+        <!-- Header Section -->
+        <div class="text-center mb-8">
+            <div class="logo-container flex justify-center mb-1">
+                <img src="https://i.imgur.com/y37YGTy.png" alt="">
+            </div>
+            <h1 class="h1">Snap Studio Pontianak</h1>
+            <h2 class="h2">Self Photo Studio & Photobox in Pontianak</h2>
+            
+            <div class="glass-card p-4 text-white/70 text-sm leading-relaxed">
+                <p class="mb-1"><i class="fas fa-location-dot mr-2"></i>Jl. Sepakat 2, A.Yani 1 Ruko Madame Bento Lt. 2</p>
+                <p class="mb-1"><i class="fas fa-location-dot mr-2"></i>Jl. Uray Bawadi Ruko Upplesories Lt.3</p>
+                <p><i class="fas fa-clock mr-2"></i>Buka Setiap Hari jam: 10.00 WIB</p>
+            </div>
+        </div>
+
+        <!-- Links Section -->
+        <div class="mb-8">
+            <p class="h3 mb-3">Hubungi/Chat Admin WhatsApp kami:</p>
+            <a href="https://wa.link/4fbiuu" target="_blank" class="glass-btn">
+                <i class="fab fa-whatsapp text-xl"></i>
+                <span>Studio Foto Sepakat 2</span>
+            </a>
+            <a href="https://wa.link/73zu88" target="_blank" class="glass-btn">
+                <i class="fab fa-whatsapp text-xl"></i>
+                <span>Studio Foto Uray Bawadi</span>
+            </a>
+            <a href="https://wa.link/yu6m1o" target="_blank" class="glass-btn">
+                <i class="fab fa-whatsapp text-xl"></i>
+                <span>Event/Content Creator</span>
+            </a>
+            <a href="https://wa.link/0gft1p" target="_blank" class="glass-btn">
+                <i class="fab fa-whatsapp text-xl"></i>
+                <span>Komplain, Kritik & Saran</span>
+            </a>
+            <p class="complain-text flex justify-center mb-3">*beri tahu kami jika pelayanan kami tidak nyaman untuk anda</p>
+        </div>
+
+        <!-- Maps Section -->
+        <div class="mb-1">
+            <h3 class="h3 px-1">Cek Lokasi Snap Studio:</h3>
+            <div class="grid grid-cols-2 gap-4">
+                <!-- Cabang 1 -->
+                <div class="flex flex-col gap-2">
+                    <div class="map-box glass-card" onclick="window.open('https://goo.gl/maps/example1', '_blank')">
+                        <div class="map-overlay"></div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d997.4543227857521!2d109.32292199999999!3d-0.0411539!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e1d598cb748d3ef%3A0x8cfff60fc7368024!2sSnap%20Studio%20Pontianak!5e0!3m2!1sen!2sid!4v1776505967302!5m2!1sen!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    <span class="subtitle-map">Uray Bawadi</span>
+                </div>
+                <!-- Cabang 2 -->
+                <div class="flex flex-col gap-2">
+                    <div class="map-box glass-card" onclick="window.open('https://goo.gl/maps/example2', '_blank')">
+                        <div class="map-overlay"></div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d838.7554455494205!2d109.34669077899842!3d-0.06472726696479131!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e1d5900372cf587%3A0xefcde5ede65881e4!2sSnap%20studio!5e0!3m2!1sen!2sid!4v1776505884582!5m2!1sen!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    <span class="subtitle-map">Sepakat 2</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Section -->
+        <footer class="flex justify-center gap-8 py-4">
+            <a href="https://www.instagram.com/snapstudio.pontianak" target="_blank" class="text-white/60 hover:text-white transition-colors text-2xl">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://www.tiktok.com/@snapstudio.pontianak" target="_blank" class="text-white/60 hover:text-white transition-colors text-2xl">
+                <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="mailto:snapstudiopontianak@gmail.com" class="text-white/60 hover:text-white transition-colors text-2xl">
+                <i class="far fa-envelope"></i>
+            </a>
+        </footer>
+        
+        <div class="text-center mt-6">
+            <p class="text-[12px] text-white/30">powered by Snap Studio Pontianak</p>
+        </div>
+    </main>
+
+    <script>
+        // Optional: Interaction effect for maps or buttons
+        document.querySelectorAll('.glass-btn').forEach(btn => {
+            btn.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.98)';
+            });
+            btn.addEventListener('touchend', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+    </script>
+</body>
+</html>
